@@ -1,54 +1,54 @@
 import React, { useState } from 'react';
-import axios from 'axios'; 
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Sidebar from './Components/Sidebar'; 
+import Sidebar from './Components/Sidebar';
+import axios from "axios";
+import { Route, Routes } from 'react-router-dom';
 import NewChat from './NewChat';
 
 const ChatApp = () => {
   const [userInput, setUserInput] = useState('');
+
   const [messages, setMessages] = useState([]);
   const [selectedMenuItem, setSelectedMenuItem] = useState('');
-
   const handleChange = (event) => {
     setUserInput(event.target.value);
   };
-  
   const handleDropdownChange = (event) => {
     setSelectedMenuItem(event.target.value);
   };
-
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const response = await fetchResponse(userInput);
-    setMessages((prevMessages) => [
-      ...prevMessages,
-      { type: 'user', content: userInput },
-      { type: 'bot', content: response },
-    ]);
-    setUserInput('');
+    var resp = await axios.get("http://localhost:8000/chat", {
+      params: {
+        question: userInput,
+        sessionid: localStorage.getItem("sessionid")
+      }
+    })
+    console.log(resp.data);
+
+
   };
 
-  const fetchResponse = async (query) => {
-    // Perform API call here using Axios
-    const apiUrl = 'your_api_endpoint_here';
-    try {
-      const response = await axios.post(apiUrl, { question: query });
-      return response.data.answer;
-    } catch (error) {
-      console.error('Error fetching response:', error);
-      return 'Sorry, there was an error. Please try again.';
-    }
-  };
 
   return (
-    <Router>
       <div className="app-container">
         <Sidebar />
         <div className="chat-section">
-          <h2>MediPal Bot</h2>
+          <h1>MediPal Bot</h1>
           <Routes>
             <Route path="/" element={
               <div className="chat-container">
+                <div className="learn-more-section">
+                  <p>Learn More</p>
+                  <div className="buttons-container">
+                    <div className="buttons">
+                      <button>Palitexcel</button>
+                      <button>Dietary</button>
+                      <button>Nutrition</button>
+                      <button>Symptoms</button>
+                      <button>..more</button>
+                    </div>
+                  </div>
+                </div>
                 <div className="top-part">
                 <p style={{ paddingRight: '10px' }}>I want to know more about</p>
                   <select value={selectedMenuItem} onChange={handleDropdownChange} style={{ paddingLeft: '10px', borderRadius: '10px' }}>
@@ -72,25 +72,13 @@ const ChatApp = () => {
                   />
                   <button type="submit">Send</button>
                 </form>
-                <div className="learn-more-section">
-                  <p>Learn More</p>
-                  <div className="buttons-container">
-                    <div className="buttons">
-                      <button>Palitexcel</button>
-                      <button>Dietary</button>
-                      <button>Nutrition</button>
-                      <button>Symptoms</button>
-                      <button>..more</button>
-                    </div>
-                  </div>
-                </div>
+                
               </div>
             } />
             <Route path="/new-chat" element={<NewChat />} />
           </Routes>
         </div>
       </div>
-    </Router>
   );
 };
 
