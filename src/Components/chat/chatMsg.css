@@ -1,0 +1,17 @@
+.chat-msg {
+  display: flex;
+  min-height: 2rem;
+  padding: 1rem 2rem;
+  align-items: center;
+}
+
+.profile-pic {
+  padding: 2rem;
+  border-radius: 5%;
+  align-self: center;
+  background-color: pink;
+}
+
+.single-msg-container {
+  padding: 2rem;
+}
