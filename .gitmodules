@@ -1,0 +1,3 @@
+[submodule "medipal-backend"]
+	path = medipal-backend
+	url = https://github.com/gaobo9109/medipal.git
