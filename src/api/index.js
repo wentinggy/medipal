@@ -2,7 +2,7 @@ import axios from "axios";
 
 const axiosInstance = axios.create({
   // baseURL: "http://ec2-46-137-202-117.ap-southeast-1.compute.amazonaws.com/api", // Your API's base URL
-  baseURL: "http://localhost:8001/api", // Your API's base URL
+  baseURL: "http://localhost:5000/api", // Your API's base URL
   headers: {
     "Content-Type": "application/json",
     // Add any other default headers here

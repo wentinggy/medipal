@@ -17,7 +17,7 @@ function Signup() {
       const response = await signup(email, password, firstName, lastName).then(
         (res) => {
           // Handle successful registration (e.g., show success message)
-          console.log("User registered:", response.data.msg);
+          console.log("User registered:", res.data.msg);
         }
       );
     } catch (err) {
