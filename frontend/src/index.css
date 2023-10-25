@@ -76,27 +76,12 @@ body {
   border-radius: 5px;
 }
 
-.chat-section {
-  flex: 1;
-  background-color: #f1f1f1;
-  display: flex;
-  flex-direction: column;
-}
-
 .buttons {
   display: flex;
   flex: 1;
   justify-content: space-between;
   align-items: center;
   gap: 1rem;
-}
-
-.learn-more-section {
-  display: flex;
-  align-items: center;
-  background-color: #dcdaf4;
-  margin-top: auto;
-  padding: 0.4rem;
 }
 
 .buttons-container {
@@ -116,77 +101,4 @@ body {
   font-size: 16px;
   cursor: pointer;
   margin-left: 1rem;
-}
-.chat-container {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  background-color: #fff;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  overflow-y: auto;
-}
-
-.msgs-container {
-  flex: 0.85;
-}
-
-.top-part {
-  padding: 0rem 1rem;
-  background-color: #dcdaf4;
-  border-top: 1px solid lightgray;
-  color: #939393;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-}
-
-.send-msg-container {
-  flex: 0.15;
-}
-
-.learn-more-section {
-  display: flex;
-  width: 100%;
-  margin-top: auto;
-}
-
-.message {
-  padding: 0.5rem;
-  border-radius: 5px;
-  margin-bottom: 0.5rem;
-}
-
-.user {
-  background-color: #f1f1f1;
-  align-self: flex-end;
-}
-
-.question-form {
-  grid-area: question;
-  display: flex;
-  align-items: center;
-  background-color: #f4f4f4;
-  padding: 2rem;
-  width: 100%;
-}
-
-.question-form input {
-  flex: 1;
-  margin-right: 10px;
-  padding: 5px;
-  border: none;
-  border-radius: 5px;
-}
-
-.question-form button {
-  padding: 5px 15px;
-  background-color: #9993e4;
-  border: none;
-  border-radius: 5px;
-  color: #fff;
-  cursor: pointer;
 }

@@ -22,20 +22,19 @@ function App() {
     } else {
       setloggedIn(false);
     }
-  }, []);
+  }, [cookies]);
 
   return (
     <div className="App">
-      {loggedIn == true ? (
-        <Routes>
-          <Route path="/" element={<ChatApp />} />
-        </Routes>
-      ) : (
-        <Routes>
+      <Routes>
+        {loggedIn ? (
+          <Route path="/chat" element={<ChatApp />} />
+        ) : (
           <Route path="/" element={<Login />} />
-          <Route path="/signup" element={<Signup />} />
-        </Routes>
-      )}
+        )}
+        <Route path="/" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+      </Routes>
     </div>
   );
 }

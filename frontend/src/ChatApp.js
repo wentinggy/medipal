@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import Sidebar from "./Components/Sidebar";
+import Sidebar from "./Components/sidebar/Sidebar";
 import axios from "axios";
 import { Route, Routes } from "react-router-dom";
 import NewChat from "./NewChat";
 import { ChatMsg } from "./Components/chat/ChatMsg";
 import { getChatResponse } from "./api";
+import "./chatApp.css";
 
 const ChatApp = () => {
   const [userInput, setUserInput] = useState("");
@@ -40,7 +41,6 @@ const ChatApp = () => {
     <div className="app-container">
       <Sidebar />
       <div className="chat-section">
-        <h1>MediPal Bot</h1>
         <div className="chat-container">
           <div className="msgs-container">
             {messages.map((obj, idx) => (

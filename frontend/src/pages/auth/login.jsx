@@ -21,7 +21,7 @@ function Login() {
         setCookie("email", data.email);
         setCookie("firstName", data.first_name);
         setCookie("lastName", data.last_name);
-        window.location.reload();
+        navigate("/chat");
       });
 
       console.log("Login successful", response.data);
