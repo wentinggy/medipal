@@ -1,11 +1,12 @@
 import axios from "axios";
 
+const BASE_URL = process.env.REACT_APP_BASE_API_URL || "http://localhost:5000/";
+const BASE_API_URL = BASE_URL + "api";
+
 const axiosInstance = axios.create({
-  // baseURL: "http://ec2-46-137-202-117.ap-southeast-1.compute.amazonaws.com/api", // Your API's base URL
-  baseURL: "http://localhost:5000/api", // Your API's base URL
+  baseURL: BASE_API_URL,
   headers: {
     "Content-Type": "application/json",
-    // Add any other default headers here
   },
   withCredentials: true,
 });
