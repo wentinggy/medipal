@@ -7,10 +7,7 @@ import { Route, Routes } from "react-router-dom";
 import Login from "./pages/auth/login";
 import Signup from "./pages/auth/signup";
 import { useCookies } from "react-cookie";
-
-function SaveToLocalStorage() {
-  localStorage.setItem("sessionID", "wadaw2131231qa");
-}
+import { ToastContainer } from "react-toastify";
 
 function App() {
   const [loggedIn, setloggedIn] = useState(false);
@@ -35,6 +32,18 @@ function App() {
         <Route path="/" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
       </Routes>
+      <ToastContainer
+        position="top-center"
+        autoClose={3000}
+        hideProgressBar
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </div>
   );
 }

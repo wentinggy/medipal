@@ -90,3 +90,13 @@
   color: #fff;
   cursor: pointer;
 }
+
+.smooth-scroll {
+  scroll-behavior: smooth;
+  animation: scrollAnimation 0.5s ease-in-out forwards;
+}
+
+.send-button {
+  width: 5rem;
+  height: 2rem;
+}

@@ -5,13 +5,18 @@ import { Route, Routes } from "react-router-dom";
 import NewChat from "./NewChat";
 import { ChatMsg } from "./Components/chat/ChatMsg";
 import { getChatResponse } from "./api";
+import { useEffect } from "react";
 import "./chatApp.css";
+import Dots from "./Components/accessories/dots";
+import { useToastr } from "./Components/notifications/toastr";
 
 const ChatApp = () => {
   const [userInput, setUserInput] = useState("");
 
   const [messages, setMessages] = useState([]);
   const [selectedMenuItem, setSelectedMenuItem] = useState("");
+  const [isMsgSending, setIsMsgSending] = useState(false);
+  const { showToastr } = useToastr();
   const handleChange = (event) => {
     setUserInput(event.target.value);
   };
@@ -20,33 +25,63 @@ const ChatApp = () => {
   };
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const currQuestion = userInput;
+    if (userInput.trim() === "") {
+      showToastr("Query cannot be empty!", "error");
+      return;
+    }
 
+    if (isMsgSending) {
+      showToastr("Only one message can be sent at a time!", "error");
+    }
+    const currQuestion = userInput;
+    setIsMsgSending(true);
+    setMessages([...messages, [currQuestion, null]]);
+    setUserInput("");
     await getChatResponse(userInput)
       .then((res) => {
         // Assuming that `res.data.history` is an array of arrays
         const prevConvo = res.data.history.map((entry) => [
           entry[0],
           entry[1].result,
+          entry[1]?.sources,
         ]);
         const currRes = res.data.answer.result;
-        setMessages([...prevConvo, [currQuestion, currRes]]);
+        const currResSources = res.data.answer.sources;
+        setMessages([...prevConvo, [currQuestion, currRes, currResSources]]);
       })
       .catch((err) => {
-        console.log(err);
+        showToastr(
+          "Error loading chat response. Please refresh the page!",
+          "error"
+        );
+      })
+      .finally(() => {
+        setIsMsgSending(false);
       });
   };
+
+  useEffect(() => {
+    setTimeout(() => {
+      const chatContainer = document.getElementById("msgs-container");
+      if (!chatContainer) {
+        return;
+      }
+      chatContainer.classList.add("smooth-scroll");
+      chatContainer.scrollTop = chatContainer.scrollHeight;
+    }, 1000);
+    // eslint-disable-next-line
+  }, [messages]);
 
   return (
     <div className="app-container">
       <Sidebar />
       <div className="chat-section">
         <div className="chat-container">
-          <div className="msgs-container">
+          <div className="msgs-container" id="msgs-container">
             {messages.map((obj, idx) => (
               <div key={idx}>
                 <ChatMsg isFromUser={true} content={obj[0]} />
-                <ChatMsg isFromUser={false} content={obj[1]} />
+                <ChatMsg isFromUser={false} content={obj[1]} sources={obj[2]} />
               </div>
             ))}
           </div>
@@ -84,7 +119,9 @@ const ChatApp = () => {
 
             <form onSubmit={handleSubmit} className="question-form">
               <input type="text" value={userInput} onChange={handleChange} />
-              <button type="submit">Send</button>
+              <button className="send-button" type="submit">
+                {isMsgSending ? <Dots isLoading={isMsgSending} /> : "Send"}
+              </button>
             </form>
           </div>
         </div>

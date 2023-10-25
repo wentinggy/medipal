@@ -3,6 +3,7 @@ import MedipalPicture from "../../medipalpicture.png";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { signup } from "../../api";
+import { useToastr } from "../../Components/notifications/toastr";
 
 function Signup() {
   const [email, setemail] = useState("");
@@ -10,19 +11,20 @@ function Signup() {
   const [firstName, setfirstName] = useState("");
   const [lastName, setlastName] = useState("");
 
+  const { showToastr } = useToastr();
+
   const navigate = useNavigate();
 
   const handleSignup = async () => {
-    try {
-      const response = await signup(email, password, firstName, lastName).then(
-        (res) => {
-          // Handle successful registration (e.g., show success message)
-          console.log("User registered:", res.data.msg);
-        }
-      );
-    } catch (err) {
-      console.log(err);
-    }
+    const response = await signup(email, password, firstName, lastName)
+      .then((res) => {
+        // Handle successful registration (e.g., show success message)
+        showToastr("Signup successful!", "success");
+        navigate("/");
+      })
+      .catch((err) => {
+        showToastr("Signup failed, try again!", "error");
+      });
   };
 
   return (

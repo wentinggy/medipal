@@ -4,30 +4,31 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import { login } from "../../api";
+import { useToastr } from "../../Components/notifications/toastr";
 
 function Login() {
   const [email, setemail] = useState("");
   const [password, setpassword] = useState("");
   const [cookies, setCookie] = useCookies(["user"]);
+  const { showToastr } = useToastr();
 
   const navigate = useNavigate();
 
   const handleLogin = async () => {
-    try {
-      const response = await login(email, password).then((res) => {
+    const response = await login(email, password)
+      .then((res) => {
         const data = res.data;
-        alert(data.message);
         setCookie("sessionid", data.sessionid);
         setCookie("email", data.email);
         setCookie("firstName", data.first_name);
         setCookie("lastName", data.last_name);
         navigate("/chat");
+        showToastr("Welcome to Medipal!", "success");
+      })
+      .catch((err) => {
+        console.log(err);
+        showToastr("Login failed, try again!", "error");
       });
-
-      console.log("Login successful", response.data);
-    } catch (err) {
-      console.log(err);
-    }
   };
 
   return (
