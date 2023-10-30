@@ -4,6 +4,7 @@ import MenuItems from "./MenuItems";
 import MedipalPicture from "../../medipalpicture.png";
 import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
+import { logout } from "../../api";
 import "./sidebar.css";
 
 const Sidebar = () => {
@@ -14,12 +15,14 @@ const Sidebar = () => {
 
   const name = cookies["firstName"];
 
-  const logout = () => {
-    removeCookie("lastName");
-    removeCookie("firstName");
-    removeCookie("sessionid");
-    removeCookie("email");
-    navigate("/");
+  const handleLogout = async () => {
+    await logout(cookies["sessionid"]).finally(() => {
+      removeCookie("lastName");
+      removeCookie("firstName");
+      removeCookie("sessionid");
+      removeCookie("email");
+      navigate("/");
+    });
   };
 
   return (
@@ -34,7 +37,7 @@ const Sidebar = () => {
       <MenuItems />
       {/* Add the rest of the sidebar content here */}
 
-      <div onClick={logout} className="menu-item">
+      <div onClick={handleLogout} className="menu-item">
         Logout
       </div>
     </div>

@@ -39,3 +39,9 @@ export const login = async (email, password) => {
     password,
   });
 };
+
+export const logout = async (sessionid) => {
+  return await axiosInstance.post("/logout", {
+    sessionid,
+  });
+};
