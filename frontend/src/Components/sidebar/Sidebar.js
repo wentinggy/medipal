@@ -6,12 +6,16 @@ import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
 import { logout } from "../../api";
 import "./sidebar.css";
+import useInactivity from "../../hooks/useInactivity";
+import { useEffect } from "react";
 
 const Sidebar = () => {
   const profilePictureURL = null;
 
   const [cookies, setCookies, removeCookie] = useCookies();
   const navigate = useNavigate();
+
+  const isActive = useInactivity();
 
   const name = cookies["firstName"];
 
@@ -24,6 +28,13 @@ const Sidebar = () => {
       navigate("/");
     });
   };
+
+  useEffect(() => {
+    // Auto logs user out if no activity detected
+    if (!isActive) {
+      handleLogout();
+    }
+  }, [isActive]);
 
   return (
     <div className="sidebar">
