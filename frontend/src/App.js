@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 import ChatApp from "./ChatApp";
 import axios from "axios";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, Navigate } from "react-router-dom";
 import Login from "./pages/auth/login";
 import Signup from "./pages/auth/signup";
 import { useCookies } from "react-cookie";
@@ -24,13 +24,12 @@ function App() {
   return (
     <div className="App">
       <Routes>
-        {loggedIn ? (
-          <Route path="/chat" element={<ChatApp />} />
-        ) : (
-          <Route path="/" element={<Login />} />
-        )}
         <Route path="/" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
+        <Route
+          path="/chat"
+          element={loggedIn ? <ChatApp /> : <Navigate to="/" />}
+        />
       </Routes>
       <ToastContainer
         position="top-center"
