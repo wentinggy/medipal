@@ -1,0 +1,41 @@
+.login-page {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  .login-container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    min-width: 40%;
+    padding: 2rem 2rem;
+    border: 1px solid lightgray;
+    border-radius: 2%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+    form {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+
+      button {
+        margin-top: 2rem;
+      }
+    }
+
+    .login-footer {
+      margin-top: 2rem;
+      color: rgb(50, 47, 47);
+
+      .signup-link {
+        text-decoration: none;
+        color: rgb(118, 118, 233);
+      }
+    }
+  }
+}
