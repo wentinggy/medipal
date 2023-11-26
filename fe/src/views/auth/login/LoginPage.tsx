@@ -6,6 +6,7 @@ import CustomTextField from "components/ui/CustomTextField";
 import { apiClient } from "services/api";
 import { useToastr } from "hooks/useToastr";
 import { useNavigate } from "react-router-dom";
+import MedipalLogo from "../../../medipal_logo.png"
 import Cookies from "js-cookie";
 
 interface LoginForm {
@@ -43,33 +44,42 @@ const LoginPage: React.FC = () => {
 
   return (
     <div className="login-page">
-      <div className="login-container">
-        <div className="login-header">
-          <h2>Sign In</h2>
+      <div className="background-column">
+        <div className="background-column-content">
+          <img className="medipal-logo" src={MedipalLogo} alt="logo" />
+          <h1>Welcome to</h1>
+          <h1>Medipal!</h1>
         </div>
-        <form onSubmit={handleSubmit}>
-          <CustomTextField
-            label="Email"
-            type="email"
-            name="email"
-            value={loginData.email}
-            onChange={handleChange}
-          />
-          <CustomTextField
-            label="Password"
-            type="password"
-            name="password"
-            value={loginData.password}
-            onChange={handleChange}
-            onClick={handleSubmit}
-          />
-          <CustomButton type="submit">Sign In</CustomButton>
-        </form>
-        <div className="login-footer">
-          Don't have an account? Sign up{" "}
-          <Link className="signup-link" to="/signup">
-            here.
-          </Link>
+      </div>
+      <div className="white-column">
+        <div className="login-container">
+          <div className="login-header">
+            <h2>Sign In</h2>
+          </div>
+          <form onSubmit={handleSubmit}>
+            <CustomTextField
+              label="Email"
+              type="email"
+              name="email"
+              value={loginData.email}
+              onChange={handleChange}
+            />
+            <CustomTextField
+              label="Password"
+              type="password"
+              name="password"
+              value={loginData.password}
+              onChange={handleChange}
+              onClick={handleSubmit}
+            />
+            <CustomButton type="submit">Sign In</CustomButton>
+          </form>
+          <div className="login-footer">
+            Don't have an account? Sign up{" "}
+            <Link className="signup-link" to="/signup">
+              here.
+            </Link>
+          </div>
         </div>
       </div>
     </div>
