@@ -1,42 +1,21 @@
 .sidebar {
   display: flex;
   flex-direction: column;
-  padding: 0.5rem;
+  padding: 0.25rem;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 
-  .sidebar-user-card {
+  .sidebar-medipal-logo {
     display: flex;
+    padding: 0rem 1rem;
     align-items: center;
-    margin: 1rem;
-    padding: 0.5rem;
-    height: 15vh;
-    border-radius: 5%;
-    background-color: rgba(255, 255, 255, 0.2);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    box-sizing: border-box;
-
-    .sidebar-user-content {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      .sidebar-user-img {
-        height: 8vh;
-        width: 8vh;
-        background-color: white;
-        border-radius: 50%;
-        margin-right: 0.5rem;
-      }
-
-      .sidebar-user-info {
-        display: flex;
-        flex-direction: column;
-        .sidebar-user-status {
-          display: inline-block;
-          font-size: small;
-          color: darkslategrey;
-        }
-      }
+    img {
+      width: 2rem;
+      height: 2rem;
+    }
+    h3 {
+      margin-left: 0.25rem;
+      font-weight: 600;
+      letter-spacing: -1px;
     }
   }
 

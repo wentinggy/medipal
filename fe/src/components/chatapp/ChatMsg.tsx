@@ -21,7 +21,11 @@ const ChatMsg: React.FC<ChatMsgProps> = ({ isUser, content }) => {
       ref={messageRef}
     >
       <div className="logo-container">
-        <AccountCircleIcon />
+        {isUser ? (
+          <AccountCircleIcon />
+        ) : (
+          <img src="/assets/logo.png" alt="medipal-logo" />
+        )}
       </div>
       <div className="content">{content}</div>
     </div>

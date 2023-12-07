@@ -1,0 +1,11 @@
+.navbar {
+  height: 10svh;
+  padding: 1rem 1.5rem;
+  width: 100%;
+  .logo {
+    display: flex;
+    img {
+      width: 4rem;
+    }
+  }
+}

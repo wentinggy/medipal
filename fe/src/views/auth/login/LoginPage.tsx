@@ -1,5 +1,5 @@
 import "views/auth/login/LoginPage.scss";
-import React, { useState, FormEvent } from "react";
+import React, { useState, FormEvent, KeyboardEvent } from "react";
 import { Link } from "react-router-dom";
 import CustomButton from "components/ui/CustomButton";
 import CustomTextField from "components/ui/CustomTextField";
@@ -7,6 +7,7 @@ import { apiClient } from "services/api";
 import { useToastr } from "hooks/useToastr";
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
+import Navbar from "components/landing/navbar/Navbar";
 
 interface LoginForm {
   email: string;
@@ -36,40 +37,41 @@ const LoginPage: React.FC = () => {
         navigate("/chat");
       })
       .catch((err) => {
-        console.log(err);
         showToastr({ message: "Login failed!", type: "error" });
       });
   };
 
   return (
-    <div className="login-page">
-      <div className="login-container">
-        <div className="login-header">
-          <h2>Sign In</h2>
-        </div>
-        <form onSubmit={handleSubmit}>
-          <CustomTextField
-            label="Email"
-            type="email"
-            name="email"
-            value={loginData.email}
-            onChange={handleChange}
-          />
-          <CustomTextField
-            label="Password"
-            type="password"
-            name="password"
-            value={loginData.password}
-            onChange={handleChange}
-            onClick={handleSubmit}
-          />
-          <CustomButton type="submit">Sign In</CustomButton>
-        </form>
-        <div className="login-footer">
-          Don't have an account? Sign up{" "}
-          <Link className="signup-link" to="/signup">
-            here.
-          </Link>
+    <div>
+      <Navbar />
+      <div className="login-page">
+        <div className="login-container">
+          <div className="login-header">
+            <h2>Sign In</h2>
+          </div>
+          <form onSubmit={handleSubmit}>
+            <CustomTextField
+              label="Email"
+              type="email"
+              name="email"
+              value={loginData.email}
+              onChange={handleChange}
+            />
+            <CustomTextField
+              label="Password"
+              type="password"
+              name="password"
+              value={loginData.password}
+              onChange={handleChange}
+            />
+            <CustomButton type="submit">Sign In</CustomButton>
+          </form>
+          <div className="login-footer">
+            Don't have an account? Sign up{" "}
+            <Link className="signup-link" to="/signup">
+              here.
+            </Link>
+          </div>
         </div>
       </div>
     </div>

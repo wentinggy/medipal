@@ -10,18 +10,15 @@ export default function Sidebar() {
   ];
   return (
     <div className="sidebar">
-      <div className="sidebar-user-card">
-        <div className="sidebar-user-content">
-          <div className="sidebar-user-img" />
-          <div className="sidebar-user-info">
-            Jane Doe
-            <span className="sidebar-user-status"> User</span>
-          </div>
-        </div>
+      <div className="sidebar-medipal-logo">
+        <img src="/assets/logo.png" alt="medipal-logo" />
+        <h3>Medipal</h3>
       </div>
       <div className="sidebar-items">
         {items.map((item) => (
-          <div className="sidebar-item">{item}</div>
+          <div key={`sidebar-${item}`} className="sidebar-item">
+            {item}
+          </div>
         ))}
       </div>
     </div>
