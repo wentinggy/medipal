@@ -5,9 +5,11 @@ import "views/auth/signup/SignupPage.scss";
 import CustomTextField from "components/ui/CustomTextField";
 import { apiClient } from "services/api";
 import { useToastr } from "hooks/useToastr";
+import { useNavigate } from "react-router-dom";
 
 interface SignupForm {
-  username: string;
+  firstname: string;
+  lastname: string;
   email: string;
   password: string;
   confirmPassword: string;
@@ -15,12 +17,14 @@ interface SignupForm {
 
 const SignupPage: React.FC = () => {
   const [signupData, setSignupData] = useState<SignupForm>({
-    username: "",
+    firstname: "",
+    lastname: "",
     email: "",
     password: "",
     confirmPassword: "",
   });
   const { showToastr } = useToastr();
+  const navigate = useNavigate();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSignupData({ ...signupData, [e.target.name]: e.target.value });
@@ -32,11 +36,12 @@ const SignupPage: React.FC = () => {
       .signup(
         signupData.email,
         signupData.password,
-        signupData.username,
-        signupData.username
+        signupData.firstname,
+        signupData.lastname
       )
       .then((res) => {
         showToastr({ message: "Signup successful!", type: "success" });
+        navigate("/login");
       })
       .catch((err) => {
         console.log("err");
@@ -52,10 +57,17 @@ const SignupPage: React.FC = () => {
         </div>
         <form onSubmit={handleSubmit}>
           <CustomTextField
-            label="Username"
+            label="First Name"
             type="text"
-            name="username"
-            value={signupData.username}
+            name="firstname"
+            value={signupData.firstname}
+            onChange={handleChange}
+          />
+          <CustomTextField
+            label="Last Name"
+            type="text"
+            name="lastname"
+            value={signupData.lastname}
             onChange={handleChange}
           />
           <CustomTextField
