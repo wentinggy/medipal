@@ -14,7 +14,11 @@ interface SidebarProps {
 
 export const Sidebar: React.FC<SidebarProps> = ({ handleNewChat }) => {
   const navigate = useNavigate();
-  const name = Cookies.get("name");
+  const name = Cookies.get("name") ?? "";
+
+  function capitalize(str: string) {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+  }
 
   const handleLogout = async () => {
     const sessionId: string = Cookies.get("sessionid") ?? "";
@@ -37,7 +41,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ handleNewChat }) => {
             <AccountCircleIcon fontSize="large" />
           </div>
           <div className="sidebar-user-info">
-            {name ?? "User"}
+            {capitalize(name) ?? "User"}
             <span className="sidebar-user-status"> User</span>
           </div>
         </div>
