@@ -1,6 +1,7 @@
 import ChatMsgsContainer from "components/chatapp/ChatMsgsContainer";
 import MessageBar from "components/chatapp/Messagebar";
 import { Sidebar } from "components/sidebar/Sidebar";
+import useInactivity from "hooks/useInactivity";
 import { useToastr } from "hooks/useToastr";
 import { useState } from "react";
 import { apiClient } from "services/api";
@@ -11,6 +12,9 @@ function ChatAppPage() {
   const [messages, setMessages] = useState<Array<string | null>>([]);
   const { showToastr } = useToastr();
   const [isMsgSending, setIsMsgSending] = useState<boolean>(false);
+
+  // Handle inactivity beyond 5 minutes to auto logout
+  useInactivity();
 
   // To adjust once session id can be created for new chats
   const handleNewChat: () => void = () => {
