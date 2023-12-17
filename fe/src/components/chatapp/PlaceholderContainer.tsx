@@ -3,7 +3,6 @@ import "./PlaceholderContainer.scss";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import SickIcon from "@mui/icons-material/Sick";
 import CoronavirusIcon from "@mui/icons-material/Coronavirus";
-import { Dispatch, SetStateAction } from "react";
 
 interface PlaceholderContainerProps {
   sendMessage: (userMsg: string) => void;
