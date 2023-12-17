@@ -7,17 +7,20 @@ import {
 } from "react";
 import "components/chatapp/Messagebar.scss";
 import CustomButton from "components/ui/CustomButton";
+import Dots from "components/ui/Dots";
 
 interface MessageBarProps {
   onMessageSubmit: (message: string) => void;
   userMsg: string;
-  setUserMsg: Dispatch<SetStateAction<string>>; // Corrected type
+  setUserMsg: Dispatch<SetStateAction<string>>;
+  isMsgSending: boolean;
 }
 
 const MessageBar: React.FC<MessageBarProps> = ({
   onMessageSubmit,
   userMsg,
   setUserMsg,
+  isMsgSending,
 }) => {
   const handleSubmit = () => {
     if (userMsg.trim() !== "") {
@@ -45,9 +48,19 @@ const MessageBar: React.FC<MessageBarProps> = ({
         onChange={handleChange}
         onKeyDown={handleKeyDown}
       />
-      <CustomButton fullWidth={false} onClick={handleSubmit}>
-        Send
-      </CustomButton>
+      {isMsgSending ? (
+        <CustomButton fullWidth={false} className="send-btn">
+          <Dots isLoading={isMsgSending} />
+        </CustomButton>
+      ) : (
+        <CustomButton
+          fullWidth={false}
+          onClick={handleSubmit}
+          className="send-btn"
+        >
+          Send
+        </CustomButton>
+      )}
     </div>
   );
 };

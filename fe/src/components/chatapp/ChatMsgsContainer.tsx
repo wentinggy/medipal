@@ -2,7 +2,7 @@ import "components/chatapp/ChatMsgsContainer.scss";
 import ChatMsg from "components/chatapp/ChatMsg";
 
 interface ChatMsgsContainerProps {
-  messages: string[];
+  messages: Array<string | null>;
 }
 
 const ChatMsgsContainer: React.FC<ChatMsgsContainerProps> = ({ messages }) => {

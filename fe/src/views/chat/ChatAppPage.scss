@@ -19,6 +19,13 @@
 
     .message-bar {
       flex: 0.15;
+
+      .send-btn {
+        color: white;
+
+        width: 4rem;
+        height: 2rem;
+      }
     }
   }
 }

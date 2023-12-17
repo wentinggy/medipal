@@ -1,10 +1,11 @@
 import React, { useRef, useEffect } from "react";
 import "components/chatapp/ChatMsg.scss";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import Dots from "components/ui/Dots";
 
 interface ChatMsgProps {
   isUser: boolean;
-  content: string;
+  content: string | null;
 }
 
 const ChatMsg: React.FC<ChatMsgProps> = ({ isUser, content }) => {
@@ -27,7 +28,11 @@ const ChatMsg: React.FC<ChatMsgProps> = ({ isUser, content }) => {
           <img src="/assets/logo.png" alt="medipal-logo" />
         )}
       </div>
-      <div className="content">{content}</div>
+      {content ? (
+        <div className="content">{content}</div>
+      ) : (
+        <Dots isLoading={true} />
+      )}
     </div>
   );
 };

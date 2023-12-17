@@ -19,7 +19,7 @@ function App() {
   return (
     <div className="app">
       <Routes>
-        <Route path={views.HOME} element={<LoginPage />}></Route>
+        <Route path={views.HOME} element={<LoginPage />} />
         <Route path={views.LOGIN} element={<LoginPage />} />
         <Route path={views.SIGNUP} element={<SignupPage />} />
         <Route path={views.CHAT} element={<ChatAppPage />} />

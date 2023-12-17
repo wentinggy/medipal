@@ -6,8 +6,13 @@ import IconButton from "@mui/material/IconButton";
 import { apiClient } from "services/api";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
+import React from "react";
 
-export default function Sidebar() {
+interface SidebarProps {
+  handleNewChat: () => void;
+}
+
+export const Sidebar: React.FC<SidebarProps> = ({ handleNewChat }) => {
   const navigate = useNavigate();
   const name = Cookies.get("name");
 
@@ -38,7 +43,7 @@ export default function Sidebar() {
         </div>
       </div>
       <div className="sidebar-items">
-        <div className="sidebar-item">
+        <div className="sidebar-item" onClick={handleNewChat}>
           <div className="sidebar-item-logo">
             <AddCircleOutlineIcon />
           </div>
@@ -53,4 +58,4 @@ export default function Sidebar() {
       </div>
     </div>
   );
-}
+};
