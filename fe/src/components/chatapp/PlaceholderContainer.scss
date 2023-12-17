@@ -1,0 +1,50 @@
+.placeholder-container {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .logo-container {
+    img {
+      align-self: center;
+      justify-self: center;
+      width: 4rem;
+    }
+  }
+
+  h1 {
+    font-weight: 400;
+    letter-spacing: -1px;
+  }
+
+  p {
+    text-align: center;
+    width: 50%;
+    margin-inline: auto;
+    color: darkslategray;
+  }
+
+  .hint-cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    margin-top: 1rem;
+    .hint-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      justify-content: center;
+      border-radius: 1rem;
+      background-color: rgba(255, 255, 255, 0.3);
+      box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+      padding: 2rem;
+      width: 16rem;
+      transition: transform 0.3s ease-out;
+      &:hover {
+        transform: scale(1.05);
+        cursor: pointer;
+      }
+    }
+  }
+}

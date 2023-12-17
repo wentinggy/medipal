@@ -12,6 +12,11 @@
     display: flex;
     flex-direction: column;
 
+    .placeholder-container {
+      flex: 0.85;
+      overflow-y: scroll;
+    }
+
     .chat-msgs-container {
       flex: 0.85;
       overflow-y: scroll;

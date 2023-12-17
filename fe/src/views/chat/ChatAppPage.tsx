@@ -1,5 +1,6 @@
 import ChatMsgsContainer from "components/chatapp/ChatMsgsContainer";
 import MessageBar from "components/chatapp/Messagebar";
+import PlaceholderContainer from "components/chatapp/PlaceholderContainer";
 import { Sidebar } from "components/sidebar/Sidebar";
 import useInactivity from "hooks/useInactivity";
 import { useToastr } from "hooks/useToastr";
@@ -33,17 +34,10 @@ function ChatAppPage() {
     });
   };
 
-  const handleSubmit = () => {
-    if (isMsgSending) {
-      showToastr({
-        message: "Only one message can be sent at a time!",
-        type: "error",
-      });
-      return;
-    }
+  const sendMessage = async (userMsg: string) => {
     setMessages([...messages, userMsg, null]);
     setIsMsgSending(true);
-    apiClient
+    await apiClient
       .getChatResponse(userMsg)
       .then((res) => {
         const response = res.data.answer.result;
@@ -59,13 +53,27 @@ function ChatAppPage() {
       .finally(() => {
         setIsMsgSending(false);
       });
-    return;
+  };
+
+  const handleSubmit = async () => {
+    if (isMsgSending) {
+      showToastr({
+        message: "Only one message can be sent at a time!",
+        type: "error",
+      });
+      return;
+    }
+    sendMessage(userMsg);
   };
   return (
     <div className="chatapp">
       <Sidebar handleNewChat={handleNewChat} />
       <div className="chat-container">
-        <ChatMsgsContainer messages={messages} rateResponse={rateResponse} />
+        {messages?.length ? (
+          <ChatMsgsContainer messages={messages} rateResponse={rateResponse} />
+        ) : (
+          <PlaceholderContainer sendMessage={sendMessage} />
+        )}
         <MessageBar
           onMessageSubmit={handleSubmit}
           userMsg={userMsg}

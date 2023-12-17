@@ -8,7 +8,7 @@ interface UseInactivityProps {
   timeout?: number;
 }
 
-function useInactivity({ timeout = 5 * 60 * 1000 }: UseInactivityProps = {}) {
+function useInactivity({ timeout = 15 * 60 * 1000 }: UseInactivityProps = {}) {
   const [isActive, setIsActive] = useState(true);
   const { showToastr } = useToastr();
   const navigate = useNavigate();
