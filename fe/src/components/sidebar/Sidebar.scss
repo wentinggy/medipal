@@ -1,12 +1,13 @@
 .sidebar {
   display: flex;
   flex-direction: column;
-  padding: 0.25rem;
+  padding-inline: 0.25rem;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 
   .sidebar-medipal-logo {
     display: flex;
-    padding: 0rem 1rem;
+    padding: 1rem 0rem;
+    padding-left: 0.75rem;
     align-items: center;
     img {
       width: 2rem;
@@ -17,22 +18,129 @@
       font-weight: 600;
       letter-spacing: -1px;
     }
+
+    .logout-icon {
+      margin-left: auto;
+      margin-top: auto;
+      justify-self: center;
+      align-self: center;
+      color: black;
+
+      &:hover {
+        filter: brightness(80%);
+        cursor: pointer;
+      }
+    }
+  }
+
+  .sidebar-user-card {
+    display: flex;
+    align-items: center;
+    margin-inline: 0.5rem;
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    height: 15vh;
+    border-radius: 5%;
+    background-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+
+    .sidebar-user-content {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      .sidebar-user-img {
+        margin-right: 0.5rem;
+      }
+
+      .sidebar-user-info {
+        display: flex;
+        flex-direction: column;
+        .sidebar-user-status {
+          display: inline-block;
+          font-size: small;
+          color: darkslategrey;
+        }
+      }
+    }
   }
 
   .sidebar-items {
     display: flex;
     flex-direction: column;
+    gap: 0.5rem;
+    margin: 0rem 0.25rem;
     .sidebar-item {
+      display: flex;
       box-sizing: border-box;
-      margin: 0rem 0.25rem;
-      padding: 0.5rem 1rem;
+      padding: 0.25rem 0.5rem;
       border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+
+      .sidebar-item-logo {
+        margin-left: 0.5rem;
+        align-self: center;
+      }
+
+      h4 {
+        margin-left: 0.5rem;
+        justify-self: center;
+        font-weight: 400;
+      }
 
       &:hover {
         cursor: pointer;
         color: darkslategray;
       }
+    }
+
+    .sidebar-chathist {
+      display: flex;
+      box-sizing: border-box;
+      padding: 0.25rem 0.5rem;
+      padding-bottom: 0px;
+      // border-radius: 10px;
+      // box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+
+      .sidebar-item-logo {
+        margin-left: 0.5rem;
+        align-self: center;
+      }
+
+      h4 {
+        margin-left: 0.5rem;
+        justify-self: center;
+        font-weight: 400;
+      }
+    }
+
+    .chat-history {
+      transform: translateY(-0.25rem);
+      margin-left: 1.75rem;
+      border-left: 2px solid #939393;
+      padding-left: 1.25rem;
+      flex-basis: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+  }
+
+  .logout-bar {
+    padding-inline: 0.5rem;
+    display: flex;
+    align-items: center;
+    margin-top: auto;
+    border-top: 1px solid darkgray;
+
+    h4 {
+      font-weight: 400;
+    }
+
+    &:hover {
+      cursor: pointer;
+      background-color: rgba(255, 255, 255, 0.2);
     }
   }
 }

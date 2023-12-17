@@ -1,25 +1,55 @@
 import "components/sidebar/Sidebar.scss";
+import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import LogoutIcon from "@mui/icons-material/Logout";
+import IconButton from "@mui/material/IconButton";
+import { apiClient } from "services/api";
+import Cookies from "js-cookie";
+import { useNavigate } from "react-router-dom";
 
 export default function Sidebar() {
-  const items = [
-    "New Chat",
-    "Chat History",
-    "Ask a Question",
-    "Saved Chats",
-    "Logout",
-  ];
+  const navigate = useNavigate();
+  const name = Cookies.get("name");
+
+  const handleLogout = async () => {
+    const sessionId: string = Cookies.get("sessionid") ?? "";
+    await apiClient.logout(sessionId).finally(() => {
+      Cookies.remove("email");
+      Cookies.remove("name");
+      navigate("/");
+    });
+  };
+
   return (
     <div className="sidebar">
       <div className="sidebar-medipal-logo">
         <img src="/assets/logo.png" alt="medipal-logo" />
         <h3>Medipal</h3>
       </div>
-      <div className="sidebar-items">
-        {items.map((item) => (
-          <div key={`sidebar-${item}`} className="sidebar-item">
-            {item}
+      <div className="sidebar-user-card">
+        <div className="sidebar-user-content">
+          <div className="sidebar-user-img">
+            <AccountCircleIcon fontSize="large" />
           </div>
-        ))}
+          <div className="sidebar-user-info">
+            {name ?? "User"}
+            <span className="sidebar-user-status"> User</span>
+          </div>
+        </div>
+      </div>
+      <div className="sidebar-items">
+        <div className="sidebar-item">
+          <div className="sidebar-item-logo">
+            <AddCircleOutlineIcon />
+          </div>
+          <h4>New Chat</h4>
+        </div>
+      </div>
+      <div className="logout-bar" onClick={handleLogout}>
+        <IconButton>
+          <LogoutIcon fontSize="small" />
+        </IconButton>
+        <h4>Logout</h4>
       </div>
     </div>
   );

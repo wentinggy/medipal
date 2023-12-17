@@ -34,6 +34,7 @@ const LoginPage: React.FC = () => {
       .then((res: any) => {
         showToastr({ message: "Login success!", type: "success" });
         Cookies.set("sessionid", res.data.sessionid);
+        Cookies.set("name", res.data.first_name);
         navigate("/chat");
       })
       .catch((err) => {
