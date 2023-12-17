@@ -10,8 +10,8 @@ interface PlaceholderContainerProps {
 
 function PlaceholderContainer({ sendMessage }: PlaceholderContainerProps) {
   const qnOnBreastCancer = "What is breast cancer and how does it affect us?";
-  const qnOnNauseaMngment = "How can I better manage nausea?";
-  const qnOnTreatmentMngment = "Where should I go for treatment?";
+  const qnOnNauseaMngment = "How can I better manage my symptoms?";
+  const qnOnTreatmentMngment = "Where should I go to seek treatment?";
 
   const handleQuestion = (query: string) => {
     sendMessage(query);
