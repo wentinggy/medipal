@@ -1,8 +1,14 @@
+@import "src/App.scss";
+
 .message-bar {
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 1rem 0.5rem;
+
+  @media screen and (max-width: $mobile-screen) {
+    padding: 0rem;
+  }
 
   textarea {
     width: 80%;
@@ -15,5 +21,19 @@
     font-family: inherit;
     font-size: inherit;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+
+    @media screen and (max-width: $mobile-screen) {
+      margin-top: auto;
+      width: 100%;
+      max-width: 100%;
+      margin-right: 0rem;
+      height: 100%;
+    }
+  }
+
+  .send-btn {
+    @media screen and (max-width: $mobile-screen) {
+      display: none;
+    }
   }
 }
