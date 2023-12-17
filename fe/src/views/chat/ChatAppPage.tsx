@@ -12,8 +12,21 @@ function ChatAppPage() {
   const { showToastr } = useToastr();
   const [isMsgSending, setIsMsgSending] = useState<boolean>(false);
 
+  // To adjust once session id can be created for new chats
   const handleNewChat: () => void = () => {
     setMessages([]);
+  };
+
+  const rateResponse: (index: number, rating: string) => void = (
+    index,
+    rating
+  ) => {
+    apiClient.rate_response(index, rating).then((res) => {
+      showToastr({
+        message: "Response recorded. Thank you for your feedback!",
+        type: "success",
+      });
+    });
   };
 
   const handleSubmit = () => {
@@ -48,7 +61,7 @@ function ChatAppPage() {
     <div className="chatapp">
       <Sidebar handleNewChat={handleNewChat} />
       <div className="chat-container">
-        <ChatMsgsContainer messages={messages} />
+        <ChatMsgsContainer messages={messages} rateResponse={rateResponse} />
         <MessageBar
           onMessageSubmit={handleSubmit}
           userMsg={userMsg}

@@ -35,6 +35,13 @@ class ApiClient {
     });
   }
 
+  async rate_response(index: number, rating: string): Promise<void> {
+    return this.axiosInstance.post("/rating", {
+      index,
+      rating,
+    });
+  }
+
   async login(email: string, password: string): Promise<void> {
     return this.axiosInstance.post("/login", {
       email,

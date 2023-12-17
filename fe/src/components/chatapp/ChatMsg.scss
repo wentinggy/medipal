@@ -23,6 +23,11 @@
     overflow-y: auto;
     white-space: pre-line;
     line-height: 1.5rem;
+    width: 100%;
+
+    .msg-actions {
+      float: right;
+    }
   }
 }
 
