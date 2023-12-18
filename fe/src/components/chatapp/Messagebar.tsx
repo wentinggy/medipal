@@ -8,6 +8,8 @@ import {
 import "components/chatapp/Messagebar.scss";
 import CustomButton from "components/ui/CustomButton";
 import Dots from "components/ui/Dots";
+import SendIcon from "@mui/icons-material/Send";
+import { IconButton } from "@mui/material";
 
 interface MessageBarProps {
   onMessageSubmit: (message: string) => void;
@@ -58,9 +60,13 @@ const MessageBar: React.FC<MessageBarProps> = ({
           onClick={handleSubmit}
           className="send-btn"
         >
-          Send
+          <SendIcon fontSize="small" />
         </CustomButton>
       )}
+
+      <IconButton onClick={handleSubmit} className="mobile-send-btn">
+        <SendIcon fontSize="small" />
+      </IconButton>
     </div>
   );
 };

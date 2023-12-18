@@ -12,7 +12,7 @@ interface CustomButtonProps extends ButtonProps {
 function CustomButton({
   borderRadius = 8,
   backgroundColor = "#000000",
-  padding = "0.25rem 0.5rem",
+  padding = "0.25em 0.5em",
   fontSize = "1rem",
   children,
   ...rest
